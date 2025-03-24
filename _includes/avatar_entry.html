@@ -1,0 +1,8 @@
+{% if people.avatar %}
+<div class="avatar">
+    <img src="{{ site.baseurl }}/assets/avatar/{{people.avatar}}" alt="Avatar" class="centeravatar">
+        <a href="{{people.web}}">{{people.name}}</a>
+        {% if people.email %}<br><a class="fa fa-envelope" href="mailto:{{people.email}}"></a>{% endif %}
+        {% if people.email %}<br><em>OH: {{people.oh}}<br>Location: {{people.location}}</em>{% endif %}
+</div>
+{% endif %}
