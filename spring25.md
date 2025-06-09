@@ -50,9 +50,9 @@ Students form into teams of three (3) to finish the labs and the final project u
         {% else %}
             <h3>{{ p.name }}</h3> 
         {% endif %}
-        <!-- <video width="640" height="360" controls>
-        <source src="{{ site.baseurl }}/assets/videos/{{p.video}}" type="video/mp4">
-        </video> -->
+        <video width="640" height="360" controls>
+        <source src="{{p.video}}" type="video/mp4">
+        </video>
     </div>
 {% endfor %}
 </div>
