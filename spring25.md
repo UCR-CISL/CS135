@@ -50,9 +50,23 @@ Students form into teams of three (3) to finish the labs and the final project u
         {% else %}
             <h3>{{ p.name }}</h3> 
         {% endif %}
-        <video width="640" height="360" controls>
-        <source src="{{p.video}}" type="video/mp4">
-        </video>
+        {% comment %} Extract YouTube video ID from various YouTube URL formats {% endcomment %}
+        {% assign youtube_id = '' %}
+        {% if p.video contains 'youtu.be/' %}
+            {% assign youtube_id = p.video | split: 'youtu.be/' | last | split: '?' | first %}
+        {% elsif p.video contains 'youtube.com/watch?v=' %}
+            {% assign youtube_id = p.video | split: 'v=' | last | split: '&' | first %}
+        {% elsif p.video contains 'youtube.com/embed/' %}
+            {% assign youtube_id = p.video | split: 'embed/' | last | split: '?' | first %}
+        {% endif %}
+        
+        {% if youtube_id != '' %}
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/{{ youtube_id }}" frameborder="0" allowfullscreen></iframe>
+        {% else %}
+            <video width="640" height="360" controls>
+                <source src="{{p.video}}" type="video/mp4">
+            </video>
+        {% endif %}
     </div>
 {% endfor %}
 </div>
