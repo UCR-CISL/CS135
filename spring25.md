@@ -38,3 +38,35 @@ Students form into teams of three (3) to finish the labs and the final project u
 - Lab 1: Unity Basics
 - Lab 2: VR Mirror
 - Final Project: Design an AR/VR/MR/XR application
+
+### Selected Final Project Demos
+{% assign project = site.data.team_spring25_project | sort : "name" %}
+<div class="clearfix">
+<br>
+{% for p in project %}
+    <div class="videos">
+        {% if p.web %}
+            <h3><a href="{{ p.web }}" target="_blank">{{ p.name }}</a></h3> 
+        {% else %}
+            <h3>{{ p.name }}</h3> 
+        {% endif %}
+        {% comment %} Extract YouTube video ID from various YouTube URL formats {% endcomment %}
+        {% assign youtube_id = '' %}
+        {% if p.video contains 'youtu.be/' %}
+            {% assign youtube_id = p.video | split: 'youtu.be/' | last | split: '?' | first %}
+        {% elsif p.video contains 'youtube.com/watch?v=' %}
+            {% assign youtube_id = p.video | split: 'v=' | last | split: '&' | first %}
+        {% elsif p.video contains 'youtube.com/embed/' %}
+            {% assign youtube_id = p.video | split: 'embed/' | last | split: '?' | first %}
+        {% endif %}
+        
+        {% if youtube_id != '' %}
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/{{ youtube_id }}" frameborder="0" allowfullscreen></iframe>
+        {% else %}
+            <video width="640" height="360" controls>
+                <source src="{{p.video}}" type="video/mp4">
+            </video>
+        {% endif %}
+    </div>
+{% endfor %}
+</div>
