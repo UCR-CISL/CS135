@@ -40,7 +40,7 @@ Students form into teams of three (3) to finish the labs and the final project u
 - Final Project: Design an AR/VR/MR/XR application
 
 ### Selected Final Project Demos
-{% assign project = site.data.team_spring26_project | sort : "name" %}
+{% assign project = site.data.team_spring26_project %}
 <div class="clearfix">
 <br>
 {% for p in project %}
